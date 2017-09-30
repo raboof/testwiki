@@ -14,10 +14,12 @@ Hello, world.
 function get(url, cb, err_cb) {
   var r = new XMLHttpRequest();
   r.onreadystatechange = function() {
-    if (r.readyState == 4 && r.status == 200)
-      cb(r.responseText);
-    else
-      err_cb(r.status, r.responseText);
+    if (r.readyState == 4) {
+      if (r.status == 200)
+        cb(r.responseText);
+      else
+        err_cb(r.status, r.responseText);
+    }
   }
   r.open("GET", url);
   r.send();
