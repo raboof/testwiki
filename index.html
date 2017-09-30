@@ -1,1 +1,39 @@
+<html>
+<head>
+  <script type="text/javascript" src="js/hocon.min.js"></script>
+</head>
+<body>
 Hello, world.
+<p>
+<form>
+  Username: <input id="username" type="text"><br>
+  Password: <input id="password" type="password"><br>
+  <a href="#" onclick="login()">Log in.</a>
+</form>
+<script>
+function get(url, cb, err_cb) {
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function() {
+    if (r.readyState == 4 && r.status == 200)
+      cb(r.responseText);
+    else
+      err_cb(r.status, r.responseText);
+  }
+  r.open("GET", url);
+  r.send();
+}
+function login() {
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+  get('users/' + username + '.hocon',
+    function(config) {
+      alert("yay");
+    },
+    function(status, text) {
+      alert("Sorry", status, text);
+    }
+  )
+}
+</script>
+</body>
+</html>
