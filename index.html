@@ -23,11 +23,15 @@ function load() {
   if (userStr) {
     user = JSON.parse(userStr);
     document.getElementById('loginlink').style.display = 'none';
-    document.getElementById('logoutlink').style.display = 'block';
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('loggedin').style.display = 'block';
+    document.getElementById('logoutlink').style.display = 'inline';
+    document.getElementById('loggedin').style.display = 'inline';
     document.getElementById('loggedin').innerHTML = user.full_name;
+  } else {
+    document.getElementById('loginlink').style.display = 'inline';
+    document.getElementById('logoutlink').style.display = 'none';
+    document.getElementById('loggedin').style.display = 'none';
   }
+  document.getElementById('login').style.display = 'none';
 }
 function lightHash(password) {
   let result = 0;
