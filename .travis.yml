@@ -14,7 +14,7 @@ script:
   - export SOURCE=.
   - export TARGET=target
   - code/generate.sh
-  - cd target; git status; git diff
+  - cd target; git status; git diff; git add .; git commit -m "Manual update on master"
 
 branches:
   only:
