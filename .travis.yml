@@ -8,14 +8,15 @@
 script:
   - openssl aes-256-cbc -K $encrypted_0c8de898dd1a_key -iv $encrypted_0c8de898dd1a_iv -in id_rsa.enc -out id_rsa -d
   - chmod 0600 id_rsa
-  - export GIT_SSH_COMMAND='ssh -i id_rsa'
+  - export GIT_SSH_COMMAND='ssh -i '`pwd`'/id_rsa'
   - git clone git@github.com:raboof/serverless-wiki code
   - git clone -b gh-pages git@github.com:raboof/testwiki target
   - export SOURCE=.
   - export TARGET=target
   - code/generate.sh
-  - cd target; git status; git diff; git add .; git commit -m "Manual update on master"
+  - cd target; git status; git diff
 
-branches:
-  only:
-  - master
+deploy:
+  provider: script
+  script: git add .; git status; git commit -m "Manual update on master"; git push
+  skip_cleanup: true
