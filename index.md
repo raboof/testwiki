@@ -1,3 +1,3 @@
 # Hello, world :)
 
-Link to a [subpage](sub/page.html)
+Link to a [subpage](sub_page.html)
