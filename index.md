@@ -1,0 +1,85 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/wiki.css">
+  <script type="text/javascript" src="js/hocon.min.js"></script>
+</head>
+<body onload="load()">
+<section class="header">
+serverless-wiki
+</section>
+<section style="text-align: right; padding: 20px">
+<a id="loginlink" href="#" onclick="document.getElementById('login').style.display = 'block'">Log in</a>
+<span id="loggedin"></span>
+<a id="logoutlink" href="#" onclick="logout()" style="display: none">Log out</a>
+<form id="login" onsubmit="login()" style="display: none">
+  Username: <input id="username" type="text"><br>
+  Password: <input id="password" type="password"><br>
+  <input type="submit"/>
+</form>
+</section>
+<script>
+function load() {
+  const userStr = localStorage.getItem("user")
+  if (userStr) {
+    user = JSON.parse(userStr);
+    document.getElementById('loginlink').style.display = 'none';
+    document.getElementById('logoutlink').style.display = 'inline';
+    document.getElementById('loggedin').style.display = 'inline';
+    document.getElementById('loggedin').innerHTML = user.full_name;
+  } else {
+    document.getElementById('loginlink').style.display = 'inline';
+    document.getElementById('logoutlink').style.display = 'none';
+    document.getElementById('loggedin').style.display = 'none';
+  }
+  document.getElementById('login').style.display = 'none';
+}
+function lightHash(password) {
+  let result = 0;
+  for (c in password) {
+    result = (result + password.charCodeAt(c)) % 100;
+  }
+  return result;
+}
+
+function get(url, cb, err_cb) {
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function() {
+    if (r.readyState == 4) {
+      if (r.status == 200)
+        cb(r.responseText);
+      else
+        err_cb(r.status, r.responseText);
+    }
+  }
+  r.open("GET", url);
+  r.send();
+}
+
+function logout() {
+  localStorage.setItem("user", "");
+  load();
+}
+
+function login() {
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+  get('users/' + username + '.hocon',
+    function(hoconConfig) {
+      const config = parseHocon(hoconConfig);
+      if (lightHash(password) == config.password_light_hash) {
+        localStorage.setItem("user", JSON.stringify(config));
+        load();
+      } else {
+        alert("Wrong password");
+      }
+    },
+    function(status, text) {
+      alert("Sorry", status, text);
+    }
+  )
+}
+</script>
+<p>Hello, world :)</p>
+
+</body>
+</html>
