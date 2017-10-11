@@ -79,16 +79,43 @@ function login() {
   )
 }
 </script>
-<h1>Hello, world :)</h1>
+<p>Serverless-wiki is a 'serverless' public wiki</p>
 
-<p>Next up:</p>
+<p>This means most of the functionality can be accessed while
+serving static pages from a CDN, and only for updates is any
+server-side code required.</p>
+
+<p>In a nutshell:</p>
 
 <ul>
-<li>creating a lambda which can update both markdown and html</li>
-<li>editing the markdown from the browser and POSTing it to that lambda</li>
+<li>Pages are mostly static and served from a CDN (e.g. github pages)</li>
+<li>Page sources are stored as markdown in a git repository (e.g. github)</li>
+<li>Logging in stores your password in your browser, and checks whether your
+password is 'plausible' (based on a high-collision hash)</li>
+<li>Update pages with an authenticated POST with new markdown, which:
+<ul>
+<li>commits the new markdown to the git repo</li>
+<li>generates new HTML and commit it to the CDN</li>
+</ul></li>
 </ul>
 
-<p>Link to a <a href="sub_page.html">subpage</a></p>
+<h2>Authentication</h2>
+
+<p>'logging in' is initially a usability feature rather than a security feature:
+the password is put though a non-cryptographic, high-collision hash function.</p>
+
+<p>The 'real' authentication happens when POSTing new markdown.</p>
+
+<h2>HTML generation</h2>
+
+<p>The actual HTML generation takes wiki templates and markdown sources
+as input, and generates HTML output.</p>
+
+<p>We expect a low throughput (after all we hope to be mostly serverless,
+so also keep Lambda invocations to a minimum), so we'd like a platform
+that has fast cold start times. While the JDK can be a fine choice for
+high-throughput Lambda functions, it might not be great for us. Nodejs
+and python are comparable, and given that choice I prefer python.</p>
 
 </body>
 </html>
