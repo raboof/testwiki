@@ -2,7 +2,10 @@
 
 Next up:
 
-* creating a lambda which can update both markdown and html
+* finish the lambda which can update both markdown and html
+  * check out markdown
+  * check credentials
+  * push markdown and html
 * editing the markdown from the browser and POSTing it to that lambda
 
 Done:
