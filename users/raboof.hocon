@@ -1,3 +1,5 @@
-full_name: "Arnout Engelen"
-password_light_hash: 48
-password_hash: '$2b$12$cbuw7XzgGYOeUY4Ezw5PrOVPlRtCC7tI/KZjAy8iMu8CkNkOWetTe'
+{
+  full_name: "Arnout Engelen"
+  password_light_hash: 48
+  password_hash: "$2b$12$cbuw7XzgGYOeUY4Ezw5PrOVPlRtCC7tI/KZjAy8iMu8CkNkOWetTe"
+}
