@@ -3,9 +3,10 @@
 Next up:
 
 * finish the lambda which can update both markdown and html
-  * check out markdown
   * check credentials
-  * push markdown and html
+  * push html to storage
+  * check out, update and push markdown
+* draw a nice picture explaining the rough serverless-wiki concept
 * editing the markdown from the browser and POSTing it to that lambda
 
 Done:
