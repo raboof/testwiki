@@ -2,8 +2,9 @@
 
 Next up:
 
+* editing the markdown from the browser 
+* POSTing it to the lambda
 * draw a nice picture explaining the rough serverless-wiki concept
-* editing the markdown from the browser and POSTing it to the lambda
 
 Done:
 
