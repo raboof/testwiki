@@ -1,12 +1,18 @@
 # Hello, world :)
+
 Next up:
 
-* editing the markdown from the browser 
-* POSTing it to the lambda
+* allow editing the index page
+* show a 'spinner' while saving
+* refresh when logging out
+* speed up saving
 * draw a nice picture explaining the rough serverless-wiki concept
+* creating new pages
 
 Done:
 
+* POSTing it to the lambda
+* editing the markdown from the browser 
 * push html to storage
 * check out, update and push markdown
 * check credentials
