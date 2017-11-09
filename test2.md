@@ -1,5 +1,4 @@
 # Hello, world :)
-xxxyyy
 Next up:
 
 * editing the markdown from the browser 
