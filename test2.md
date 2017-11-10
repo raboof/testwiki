@@ -6,6 +6,7 @@ Next up:
 * show a 'spinner' while saving
 * refresh when logging out
 * speed up saving
+	* hm maybe 12 bcrypt iterations was a bit much :)
 * draw a nice picture explaining the rough serverless-wiki concept
 * creating new pages
 
