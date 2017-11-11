@@ -4,7 +4,6 @@ Next up:
 
 * speed up saving
 	* check password, enqueue update, send response. Doing the update synchronously is too slow :(.
-* draw a nice picture explaining the rough serverless-wiki concept
 * creating new pages
 * uploading/including images
 * adding commit messages
@@ -12,6 +11,7 @@ Next up:
 
 Done:
 
+* draw a nice picture explaining the rough serverless-wiki concept
 * refresh when logging out
 * allow editing the index page
 * show a gray layover while saving
